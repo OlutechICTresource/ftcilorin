@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	<div class="course_detail page_section">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h1>{{ course.title }}</h1>
+					</div>
+				</div>
+			</div>
+	
+			<div class="row">
+				<div class="col-lg-8">
+					<img class="img-fluid" src="{{ course.course_image.url }}" alt="Image of {{ course.title }}">
+					<p>{{ course.description }}</p>
+				</div>
+				<div class="col-lg-4">
+					<div class="author_info">
+						<h5>Author: {{ course.author }}</h5>
+						<img src="{{ course.author_image.url }}" alt="Image of {{ course.author }}">
+						<p>HOD</p>
+					</div>
+					<div class="price_box">
+						<span>${{ course.price }}</span> <!-- Adjust based on your model -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

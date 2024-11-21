@@ -1,0 +1,91 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Newsletter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="newsletter_form_container mx-auto">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-center">
+                            {{ form.email }}
+                            <button id="newsletter_submit" type="submit" class="btn btn-primary ml-2">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% if messages %}
+            <div class="alert alert-info mt-3">
+                {% for message in messages %}
+                    {{ message }}<br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Newsletter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="newsletter">
+        <div class="row">
+            <div class="col">
+                <div class="section_title text-center">
+                    <h1>Subscribe to our newsletter</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <div class="newsletter_form_container mx-auto">
+                    {% if messages %}
+                        <div class="alert alert-info mt-3">
+                            {% for message in messages %}
+                                {{ message }}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <form action="{% url 'subscribe' %}" method="post">
+                        {% csrf_token %}
+                        <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-center">
+                            <input 
+                                id="newsletter_email" 
+                                class="newsletter_email" 
+                                type="email" 
+                                name="email" 
+                                placeholder="Email Address" 
+                                required="required" 
+                                data-error="Valid email is required."
+                                value="{{ form.email.value|default:'' }}"
+                            >
+                            <button 
+                                id="newsletter_submit" 
+                                type="submit" 
+                                class="newsletter_submit_btn trans_300" 
+                                value="Submit"
+                            >
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

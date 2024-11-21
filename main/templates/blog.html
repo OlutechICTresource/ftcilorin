@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- Main Section -->
+    <div class="main-content" style="margin-top:200px;">
+        <div class="container" style="display: flex; flex-wrap: wrap; flex-direction: row;">
+            <!-- Blog Posts Section -->
+            <section style="width:100%;" class="blog-posts">
+                {% if blogs %}
+                    {% for blog in blogs %}
+                        <article class="post">
+                            <h2 class="post-title">{{blog.title}}</h2>
+                            <p class="post-meta">{{blog.date_posted}}</p>
+                            <p class="post-excerpt">{{blog.content}} ...</p>
+                        </article>
+                    {% endfor %}                        
+                {% endif %}
+                
+                {% if is_paginated %}
+
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info mb-4" style="border-color: #FFB606;color: #FFB606;" href="?page=1">First</a>
+                    <a class="btn btn-outline-info mb-4" style="border-color: #FFB606;color: #FFB606;" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+    
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" style="border-color: #FFB606;color: #FFFFFF;  background-color: #FFB606;" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn btn-outline-info mb-4" style="border-color: #FFB606;color: #FFB606;" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+    
+                {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info mb-4" style="border-color: #FFB606;color: #FFB606;" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-outline-info mb-4" style="border-color: #FFB606;color: #FFB606;" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+    
+            {% endif %}
+    
+                <!-- Add more blog posts as needed -->
+            </section>
+
+            <!-- Sidebar Section -->
+            {% comment %} <aside class="sidebar">
+                
+                <h3 class="sidebar-title">Categories</h3>
+                <ul class="categories">
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Programming</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                </ul>
+            </aside>
+        </div> {% endcomment %}
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Pending</title>
+    <link rel="stylesheet" href="{% static 'styles/error.css' %}"> <!-- Link to your custom styles -->
+</head>
+<body>
+    <div class="container">
+        <div class="error-content">
+            <h1>Payment Required</h1>
+            <p>Dear {{ username }}, your registration is almost complete, but you need to make a payment before you can log in.</p>
+            <p>Please contact the admin to complete the payment process:</p>
+            <ul>
+                <li>Email: <a href="http://info@ftci.edu.ng">info@ftci.edu.ng</a></li>
+                <li>Phone: +234 8038036359, +234 80383762118.</li>
+            </ul>
+            <div class="back-home">
+                <a href="{% url 'home' %}" class="btn">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.hero_slide_background {
+    background-image: url('static/images/cou.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Adjust as needed */
+    width: 100%; /* Adjust as needed */
+    position: absolute; /* Ensure it covers the parent container */
+    top: 0;
+    left: 0;
+    z-index: -1; /* Send it to the back */
+}
